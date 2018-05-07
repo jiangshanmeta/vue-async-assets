@@ -1,0 +1,42 @@
+{
+  "name": "vue-async-assets",
+  "version": "1.0.0",
+  "description": "vue异步加载插件/组件/指令/过滤器",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "webpack-dev-server --config webpack.config.js --watch --open"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiangshanmeta/vue-async-assets.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jiangshanmeta/vue-async-assets/issues"
+  },
+  "homepage": "https://github.com/jiangshanmeta/vue-async-assets#readme",
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-runtime": "^6.23.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.18",
+    "css-loader": "^0.28.11",
+    "element-ui": "^2.3.7",
+    "html-webpack-plugin": "^2.30.1",
+    "style-loader": "^0.21.0",
+    "vue": "^2.5.13",
+    "vue-loader": "^14.1.1",
+    "vue-quill-editor": "^3.0.6",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.13",
+    "vue-transition.css": "^1.0.2",
+    "webpack": "^3.11.0",
+    "webpack-dev-server": "^2.11.1"
+  },
+  "dependencies": {}
+}
