@@ -38,5 +38,7 @@
     "webpack": "^3.11.0",
     "webpack-dev-server": "^2.11.1"
   },
-  "dependencies": {}
+  "dependencies": {
+    "is-promise": "^2.1.0"
+  }
 }

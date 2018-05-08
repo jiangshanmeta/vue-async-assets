@@ -1,5 +1,8 @@
 import Vue from 'vue'
 
+import asyncAssets from "src/index"
+Vue.use(asyncAssets);
+
 import App from './App'
 
 new Vue({
