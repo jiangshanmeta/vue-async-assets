@@ -1,6 +1,6 @@
 import isPromise from 'is-promise'
 
-function handleAsyncPluginOption(asyncPlugin){
+function nomalizeAsyncPluginOption(asyncPlugin){
     // 支持数组和对象两种形式的asyncPlugin,统一成数组形式
     if(!Array.isArray(asyncPlugin)){
         asyncPlugin = Object.keys(asyncPlugin).map((name)=>{
@@ -52,7 +52,9 @@ function handleAsyncPluginOption(asyncPlugin){
     return asyncPlugin;
 }
 
-const dataName = 'async$plugin';
+import {prefix} from "./consts"
+
+const dataName = prefix + 'plugin';
 
 
 export default function(Vue){
@@ -60,17 +62,6 @@ export default function(Vue){
     Vue.config.optionMergeStrategies.asyncPlugin = Vue.config.optionMergeStrategies.computed;
 
     Vue.mixin({
-        beforeCreate(){
-
-            const optionData = this.$options.data || {};
-            this.$options.data = function(){
-                let data = typeof optionData === 'function'?optionData.call(this):optionData;
-
-                data[dataName] = {};
-
-                return data;
-            }
-        },
         created(){
             this.$resetAsyncPlugin(this.$options.asyncPlugin);
         },
@@ -82,7 +73,7 @@ export default function(Vue){
                 return;
             }
 
-            asyncPluginOption = handleAsyncPluginOption(asyncPluginOption);
+            asyncPluginOption = nomalizeAsyncPluginOption(asyncPluginOption);
             this[dataName] = {
                 $all:false
             };
@@ -90,7 +81,6 @@ export default function(Vue){
             asyncPluginOption.forEach((item)=>{
                 this.$set(this[dataName],item.name,false);
                 item.plugin.then((plugin)=>{
-                    console.log(plugin)
                     this[dataName][item.name] = true;
                     this.constructor.use(plugin,...item.config);
                 });
@@ -104,10 +94,6 @@ export default function(Vue){
         },
     })
 
-    Object.defineProperty(Vue.prototype,'$asyncPlugin',{
-        get(){
-            return this[dataName];
-        },
-    })
+
 
 }

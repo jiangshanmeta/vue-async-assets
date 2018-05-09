@@ -4,11 +4,7 @@ const assets = ['component','directive','filter'];
 
 const prefix = 'async$';
 
-function ucfirst (str) {
-    str += '';
-    var f = str.charAt(0).toUpperCase();
-    return f + str.substr(1);
-}
+import {ucfirst} from "./helper"
 
 function nomalizeAssetOption(assetOption,asset){
     if(!Array.isArray(assetOption)){
@@ -41,18 +37,6 @@ function nomalizeAssetOption(assetOption,asset){
 export default function(Vue){
 
     Vue.mixin({
-        beforeCreate(){
-            const optionData = this.$options.data || {};
-            this.$options.data = function(){
-                let data = typeof optionData === 'function'?optionData.call(this):optionData;
-
-                assets.forEach((asset)=>{
-                    data[prefix + asset] = {};
-                });
-
-                return data;
-            }
-        },
         created(){
             assets.forEach((asset)=>{
                 this['$resetAsync' + ucfirst(asset)](this.$options['async' + ucfirst(asset)])
@@ -88,12 +72,6 @@ export default function(Vue){
                     this[prefix + asset].$all = true;
                 });
 
-            },
-        });
-
-        Object.defineProperty(Vue.prototype,'$async' + ucfirst(asset),{
-            get(){
-                return this[prefix + asset];
             },
         });
 
