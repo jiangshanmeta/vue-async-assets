@@ -86,7 +86,7 @@ export default function(Vue){
                 });
             });
 
-            Promise.all(asyncPluginOption.map((item)=>{
+            return Promise.all(asyncPluginOption.map((item)=>{
                 return item.plugin;
             })).then(()=>{
                 this[dataName].$all = true;

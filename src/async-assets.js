@@ -66,7 +66,7 @@ export default function(Vue){
                     })
                 });
 
-                Promise.all(assetOption.map((item)=>{
+                return Promise.all(assetOption.map((item)=>{
                     return item[asset];
                 })).then(()=>{
                     this[prefix + asset].$all = true;
